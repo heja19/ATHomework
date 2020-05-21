@@ -9,6 +9,12 @@
         <module name="HW2" />
         <module name="HW1" />
       </profile>
+      <profile name="Annotation profile for ATHomework" enabled="true">
+        <sourceOutputDir name="HW2/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="HW2/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ATHomework" />
+      </profile>
     </annotationProcessing>
   </component>
 </project>

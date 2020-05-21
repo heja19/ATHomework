@@ -8,7 +8,7 @@ import org.mockito.MockitoAnnotations;
 import services.PublicHolidayService;
 
 import java.time.ZonedDateTime;
-//import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -50,6 +50,7 @@ public class CourseTest {
         //then
         assertEquals(expectedResult, result);
     }
+
     @Test
     public void getWorkingDaysWrongOrderThrowsIllegalArgumentException() {
         //given
@@ -59,7 +60,7 @@ public class CourseTest {
         Course course = new Course(startDate, endDate);
         long expectedResult = -22L;
         //when
-        //Throwable exception = assertEquals(IllegalArgumentException.class, () -> course.getWorkingDays());
+        Throwable exception = assertEquals(IllegalArgumentException.class, () -> course.getWorkingDays());
         //then
         assertEquals(expectedResult,exception.getMessage());
     }
