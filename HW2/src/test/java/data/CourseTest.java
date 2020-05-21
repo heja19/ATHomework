@@ -1,4 +1,4 @@
-package school;
+package data;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,9 +8,10 @@ import org.mockito.MockitoAnnotations;
 import services.PublicHolidayService;
 
 import java.time.ZonedDateTime;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+//import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+//import static org.mockito.Mockito.when;
 
 public class CourseTest {
     ZonedDateTime startDate = ZonedDateTime.parse("2020-05-01T00:00:00.000+00:00[UTC]");
@@ -41,10 +42,10 @@ public class CourseTest {
     @Test
     public void getDaysInput(){
         //given
-        //startDate = ZonedDateTime.parse("2020-05-01T00:00:00.000+00:00[UTC]");
-        //endDate = ZonedDateTime.parse("2020-04-01T00:00:00.000+00:00[UTC]");
-        Course course = new Course(startDate, endDate);
-        long expectedResult = -22L;
+        startDate = ZonedDateTime.parse("2020-04-01T00:00:00.000+00:00[UTC]");
+        endDate = ZonedDateTime.parse("2020-05-01T00:00:00.000+00:00[UTC]");
+        when(publicHolidayService.getPublicHolidaysOnWorkdays(startDate, endDate)).thenReturn(1);
+        long expectedResult = 22L;
         //when
         long result = course.getLength();
         //then
@@ -52,7 +53,20 @@ public class CourseTest {
     }
 
     @Test
-    public void getWorkingDaysWrongOrderThrowsIllegalArgumentException() {
+    public void getDaysInputWrongOrder(){
+        //given
+        startDate = ZonedDateTime.parse("2020-05-01T00:00:00.000+00:00[UTC]");
+        endDate = ZonedDateTime.parse("2020-04-01T00:00:00.000+00:00[UTC]");
+        when(publicHolidayService.getPublicHolidaysOnWorkdays(startDate, endDate)).thenReturn(1);
+        long expectedResult = -22L;
+        //when
+        long result = course.getLength();
+        //then
+        assertEquals(expectedResult, result);
+    }
+
+ /*   @Test
+    public void getWorkingDaysWrongOrder() {
         //given
         startDate = ZonedDateTime.parse("2020-05-01T00:00:00.000+00:00[UTC]");
         endDate = ZonedDateTime.parse("2020-04-01T00:00:00.000+00:00[UTC]");
@@ -60,8 +74,10 @@ public class CourseTest {
         Course course = new Course(startDate, endDate);
         long expectedResult = -22L;
         //when
-        Throwable exception = assertEquals(IllegalArgumentException.class, () -> course.getWorkingDays());
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> course.getWorkingDays());
         //then
         assertEquals(expectedResult,exception.getMessage());
-    }
+    }*/
+
+
 }

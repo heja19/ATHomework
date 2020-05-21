@@ -1,6 +1,8 @@
-package school;
+package data;
 
 import org.junit.Test;
+import school.Teacher;
+
 import java.time.ZonedDateTime;
 import static org.junit.Assert.assertEquals;
 
